@@ -152,4 +152,8 @@ export class UserService {
   findAll(): Observable<IUser[]> {
     return this.userService.findUsers();
   }
+
+
 ```
+
+11. Check api : ```docker compse up```
