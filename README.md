@@ -4,3 +4,5 @@
 ```
 nest new . nest-api
 ```
+
+Check api -> localhost:3000/ 'Hello world' : ```npm run start``` -> ``` curl localhost:3000/```
