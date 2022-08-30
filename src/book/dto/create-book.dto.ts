@@ -1,3 +1,5 @@
+import { IsNotEmpty, MinLength } from 'class-validator';
+
 export class CreateBookDto {
   @IsNotEmpty()
   @MinLength(1)
