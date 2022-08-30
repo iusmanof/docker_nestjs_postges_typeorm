@@ -70,3 +70,16 @@ services:
 volumes:
   data: 
 ```
+
+3. Check Dockerfile 
+
+```docker build . --tag nestjs-server```
+
+ ```docker run --name nestjs-server-container nestjs-server```
+
+```localhost:3000/```
+
+```docker ps -a```
+
+```docker rm -f eb6c1efa9d0d```
+
