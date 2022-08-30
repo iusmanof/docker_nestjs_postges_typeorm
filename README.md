@@ -84,3 +84,5 @@ volumes:
 ```docker rm -f eb6c1efa9d0d```
 
 4. TypeORM ```npm i --save @nestjs/config @nestjs/typeorm typeorm pg```
+
+5. Generate resource ```user```  ->  ```nest generate resource user```
