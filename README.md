@@ -111,3 +111,45 @@ export interface IUser {
   name: string;
 }
 ```
+
+8. User module :
+
+```
+@Module({
+  imports: [ TypeOrmModule.forFeature([ UserEntity ])],
+  ...
+})
+export class UserModule {}
+```
+
+9. User service : 
+
+```
+export class UserService {
+  constructor(
+    @InjectRepository(UserEntity)
+    private userRepository: Repository<UserEntity>,
+  ) {}
+
+  add(user: IUser): Observable<IUser> {
+    return from(this.userRepository.save(user));
+  }
+
+  findUsers(): Observable<IUser[]> {
+    return from(this.userRepository.find());
+  }
+```
+
+10. User controller :
+
+```
+ @Post()
+  create(@Body() user: IUser): Observable<IUser> {
+    return this.userService.add(user);
+  }
+
+  @Get()
+  findAll(): Observable<IUser[]> {
+    return this.userService.findUsers();
+  }
+```
