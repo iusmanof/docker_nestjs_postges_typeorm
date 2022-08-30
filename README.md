@@ -86,3 +86,28 @@ volumes:
 4. TypeORM ```npm i --save @nestjs/config @nestjs/typeorm typeorm pg```
 
 5. Generate resource ```user```  ->  ```nest generate resource user```
+
+6. entity :
+
+```
+export class User {}
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+
+@Entity()
+export class UserEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  name: string;
+}
+```
+
+7. interface : 
+
+```
+export interface IUser {
+  id: number;
+  name: string;
+}
+```
