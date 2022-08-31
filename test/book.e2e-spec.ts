@@ -8,9 +8,11 @@ import { Book } from '../src/book/entities/book.entity';
 describe('AppController (e2e)', () => {
   let app: INestApplication;
 
+  const mockBooks = [{ id: 1, name: 'Book' }];
+
   const mockBookRepository = {
-	find: jest.fn()
-  }
+    find: jest.fn().mockResolvedValue(mockBooks),
+  };
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -24,6 +26,8 @@ describe('AppController (e2e)', () => {
   it('/book (GET)', () => {
     return request(app.getHttpServer())
       .get('/book')
+	  .expect('Content-Type', /json/)
       .expect(200)
+	  .expect(mockBooks)
   });
 });
