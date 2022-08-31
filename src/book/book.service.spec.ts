@@ -7,9 +7,13 @@ describe('BookService', () => {
   let service: BookService;
 
   const mockBookRepository = {
-    create: jest.fn().mockImplementation(dto => dto),
-    save: jest.fn().mockImplementation(user => Promise.resolve({ id: Date.now(), ...user}))
-  }
+    create: jest.fn().mockImplementation((dto) => dto),
+    save: jest
+      .fn()
+      .mockImplementation((book) =>
+        Promise.resolve({ id: Date.now(), ...book }),
+      ),
+  };
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
