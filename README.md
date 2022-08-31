@@ -4,7 +4,7 @@
 
 2. Unit-test Controller (book)  dto !
 
-boo.controller.spec.ts:
+book.controller.spec.ts:
 
 ```
   const mockUserService = {}
