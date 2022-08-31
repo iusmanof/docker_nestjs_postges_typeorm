@@ -31,3 +31,26 @@ book.controller.spec.ts:
     });
   });
 ```
+
+3. Unit-test Service (book)  dto !
+
+book.service.spec.ts:
+
+```
+  ...
+  const mockBookRepository = {
+    create: jest.fn().mockImplementation(dto => dto),
+    save: jest.fn().mockImplementation(user => Promise.resolve({ id: Date.now(), ...user}))
+  }
+
+  ...
+  providers: [BookService, {
+        provide: getRepositoryToken(Book),
+        useValue: mockBookRepository
+    }],
+  }).compile();
+  ...
+  it('should create a new book record and return that', async () => {
+    expect(await service.create({name: 'Book'})).toEqual({ id: expect.any(Number), name: 'Book' });
+  });
+```
