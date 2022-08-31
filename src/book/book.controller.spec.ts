@@ -1,6 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { domainToASCII } from 'url';
 import { BookController } from './book.controller';
 import { BookService } from './book.service';
+import { Book } from './entities/book.entity';
 
 describe('BookController', () => {
   let controller: BookController;
@@ -12,6 +14,14 @@ describe('BookController', () => {
         ...dto,
       };
     }),
+    findAll: jest.fn(() => {
+      // return Array | dto
+      return [];
+    }),
+    update: jest.fn((id, dto) => ({
+      id,
+      ...dto,
+    })),
   };
 
   beforeEach(async () => {
@@ -31,9 +41,29 @@ describe('BookController', () => {
   });
 
   it('should create book', () => {
-    expect(controller.create({ name: 'Book' })).toEqual({
+    const dto = { name: 'Book' };
+    expect(controller.create(dto)).toEqual({
       id: expect.any(Number),
-      name: 'Book',
+      name: dto.name,
     });
+
+    expect(mockBookService.create).toHaveBeenCalledWith(dto);
+  });
+
+  it('should update book', () => {
+     const dto = { name: 'Book' };
+    expect(controller.update('1', dto )).toEqual({
+      id: 1,
+      ...dto,
+    });
+
+    expect(mockBookService.update).toHaveBeenCalled()
+  });
+
+  it('should return empty array of books', () => {
+    const dto = [];
+    expect(controller.findAll()).toEqual(dto);
+
+    expect(mockBookService.findAll).toHaveBeenCalled();
   });
 });

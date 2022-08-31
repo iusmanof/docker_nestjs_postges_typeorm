@@ -16,17 +16,17 @@ export class BookService {
     return this.shoeRepository.save(newShoes);
   }
 
-  // findAll() {
-  //   return this.shoeRepository.find();
-  // }
+  findAll() {
+    return this.shoeRepository.find();
+  }
 
-  // findOne(id: number) {
-  //   return `This action returns a #${id} book`;
-  // }
+  findOne(id: number) {
+    return `This action returns a #${id} book`;
+  }
 
-  // update(id: number, updateBookDto: UpdateBookDto) {
-  //   return `This action updates a #${id} book`;
-  // }
+  update(id: number, updateBookDto: UpdateBookDto) {
+    return `This action updates a #${id} book`;
+  }
 
   // remove(id: number) {
   //   return `This action removes a #${id} book`;
